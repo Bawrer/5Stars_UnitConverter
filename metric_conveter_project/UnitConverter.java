@@ -47,7 +47,7 @@ public class UnitConverter extends JFrame {
         String imagePath = "metric_conveter_project\\MicrosoftTeams-image (13).png";
         File file = new File(imagePath);
         String absolutePath = file.getAbsolutePath();
-        ImageIcon icon = createResizedImageIcon(absolutePath, 100, 100); // Specify the desired width and height
+        ImageIcon icon = createResizedImageIcon(absolutePath, 100, 100);  
         imageLabel.setIcon(icon);
 
         // Wrap the image label and title label in a panel with GridBagLayout
