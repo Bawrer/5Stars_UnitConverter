@@ -26,6 +26,7 @@ public class UnitConverter extends JFrame {
         toUnitComboBox = new JComboBox<>(new String[]{"Meters", "Kilograms", "Celsius"});
 
         convertButton = new JButton("Convert");
+        convertButton.setBackground(new Color(173, 216, 230));  // Light-blue color
         convertButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -34,6 +35,7 @@ public class UnitConverter extends JFrame {
         });
 
         clearButton = new JButton("Clear");
+        clearButton.setBackground(Color.ORANGE);
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -63,8 +65,9 @@ public class UnitConverter extends JFrame {
 
         // Create a panel for the other components using GridBagLayout
         JPanel panel = new JPanel(new GridBagLayout());
+        panel.setBackground(Color.LIGHT_GRAY);  // Set the background color of the panel
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10); // Add some padding
+        gbc.insets = new Insets(10, 10, 10, 10);
 
         // Add components to the panel
         gbc.gridx = 0;
