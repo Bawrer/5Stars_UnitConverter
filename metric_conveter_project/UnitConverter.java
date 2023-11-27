@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class UnitConverter extends JFrame {
     private JLabel fromLabel, toLabel, quantityLabel, resultLabel, imageLabel, titleLabel;
@@ -41,8 +42,10 @@ public class UnitConverter extends JFrame {
         });
 
         // Add an image label
-        String imagePath = "C:\\Users\\Bonginkosi.Zweni\\Desktop\\metric_conveter_project\\MicrosoftTeams-image (13).png";
-        ImageIcon icon = createResizedImageIcon(imagePath, 100, 100); // Specify the desired width and height
+        String imagePath = "metric_conveter_project\\MicrosoftTeams-image (13).png";
+        File file = new File(imagePath);
+        String absolutePath = file.getAbsolutePath();
+        ImageIcon icon = createResizedImageIcon(absolutePath, 100, 100); // Specify the desired width and height
         imageLabel.setIcon(icon);
 
         // Wrap the image label and title label in a panel with GridBagLayout
@@ -150,8 +153,8 @@ public class UnitConverter extends JFrame {
     private void clearFields() {
         quantityField.setText("");
         resultLabel.setText("Result:");
-        fromUnitComboBox.setSelectedIndex(0); // Set the selected index to the first item
-        toUnitComboBox.setSelectedIndex(0);   // Set the selected index to the first item
+        fromUnitComboBox.setSelectedIndex(0);
+        toUnitComboBox.setSelectedIndex(0);
     }
 
     public static void main(String[] args) {
