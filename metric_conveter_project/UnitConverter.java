@@ -7,7 +7,7 @@ public class UnitConverter extends JFrame {
     private JLabel fromLabel, toLabel, quantityLabel, resultLabel, imageLabel, titleLabel;
     private JTextField quantityField;
     private JComboBox<String> fromUnitComboBox, toUnitComboBox;
-    private JButton convertButton;
+    private JButton convertButton, clearButton;
 
     public UnitConverter() {
         // Initialize components
@@ -29,6 +29,14 @@ public class UnitConverter extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 performConversion();
+            }
+        });
+
+        clearButton = new JButton("Clear");
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clearFields();
             }
         });
 
@@ -84,6 +92,10 @@ public class UnitConverter extends JFrame {
         gbc.gridx = 1;
         panel.add(convertButton, gbc);
 
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        panel.add(clearButton, gbc);
+
         // Add the image panel at the top of the BorderLayout
         add(imagePanel, BorderLayout.NORTH);
 
@@ -133,6 +145,13 @@ public class UnitConverter extends JFrame {
             e.printStackTrace();
             return null;
         }
+    }
+
+    private void clearFields() {
+        quantityField.setText("");
+        resultLabel.setText("Result:");
+        fromUnitComboBox.setSelectedIndex(0); // Set the selected index to the first item
+        toUnitComboBox.setSelectedIndex(0);   // Set the selected index to the first item
     }
 
     public static void main(String[] args) {
