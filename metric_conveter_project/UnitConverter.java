@@ -64,7 +64,7 @@ public class UnitConverter extends JFrame {
         // Create a panel for the other components using GridBagLayout
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5); // Add some padding
+        gbc.insets = new Insets(10, 10, 10, 10); // Add some padding
 
         // Add components to the panel
         gbc.gridx = 0;
@@ -85,6 +85,11 @@ public class UnitConverter extends JFrame {
         gbc.gridy = 2;
         panel.add(quantityLabel, gbc);
 
+        // Make all input fields the same size
+        Dimension fieldSize = new Dimension(fromUnitComboBox.getPreferredSize().width,
+                quantityField.getPreferredSize().height);
+        quantityField.setPreferredSize(fieldSize);
+
         gbc.gridx = 1;
         panel.add(quantityField, gbc);
 
@@ -95,8 +100,11 @@ public class UnitConverter extends JFrame {
         gbc.gridx = 1;
         panel.add(convertButton, gbc);
 
-        gbc.gridx = 1;
-        gbc.gridy = 4;
+        // Clear button on the far right
+        gbc.gridx = 2;  // Set the column to 2
+        gbc.gridy = 3;
+        gbc.gridwidth = 1; // Span one column
+        gbc.anchor = GridBagConstraints.EAST; // Align to the right
         panel.add(clearButton, gbc);
 
         // Add the image panel at the top of the BorderLayout
