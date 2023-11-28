@@ -155,8 +155,8 @@ setLocationRelativeTo(null); // Center the frame on the screen
             String toUnit = toUnitComboBox.getSelectedItem().toString();
 
             double result = convert(fromUnit, toUnit, quantity);
-
-            resultLabel.setText("Result: " + result);
+            
+            resultField.setText(String.valueOf(result));
         } catch (NumberFormatException e) {
             resultLabel.setText("Invalid input. Please enter a valid number.");
         } catch (IllegalArgumentException e) {
