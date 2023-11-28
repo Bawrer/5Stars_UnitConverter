@@ -6,6 +6,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 
+
+/*This code defines a class named UnitConverter that extends JFrame, indicating that it is a Swing frame. */
 public class UnitConverter extends JFrame {
     private JLabel fromLabel, toLabel, quantityLabel, resultLabel, imageLabel, titleLabel;
     private JTextField quantityField, resultField;
@@ -132,6 +134,7 @@ setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Prevent the default clo
 
 // ...
 
+
 // Where you want to prompt the confirmation dialog, perhaps in a windowClosing listener
 addWindowListener(new WindowAdapter() {
     @Override
@@ -147,7 +150,6 @@ pack();
 setLocationRelativeTo(null); // Center the frame on the screen
 
     }
-
     private void performConversion() {
         try {
             double quantity = Double.parseDouble(quantityField.getText());
@@ -189,6 +191,7 @@ setLocationRelativeTo(null); // Center the frame on the screen
         }
     }
 
+    
     private ImageIcon createResizedImageIcon(String path, int width, int height) {
         try {
             ImageIcon icon = new ImageIcon(path);
@@ -201,6 +204,7 @@ setLocationRelativeTo(null); // Center the frame on the screen
         }
     }
 
+    /****************Clear button************************/
     private void clearFields() {
         quantityField.setText("");
         resultLabel.setText("Result:");
@@ -208,6 +212,7 @@ setLocationRelativeTo(null); // Center the frame on the screen
         toUnitComboBox.setSelectedIndex(0);
     }
 
+    /****************main file****************************** */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             UnitConverter converter = new UnitConverter();
