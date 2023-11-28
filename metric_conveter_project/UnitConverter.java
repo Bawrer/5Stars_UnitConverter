@@ -2,11 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 
 public class UnitConverter extends JFrame {
     private JLabel fromLabel, toLabel, quantityLabel, resultLabel, imageLabel, titleLabel;
-    private JTextField quantityField;
+    private JTextField quantityField, resultField;
     private JComboBox<String> fromUnitComboBox, toUnitComboBox;
     private JButton convertButton, clearButton;
 
@@ -21,10 +23,13 @@ public class UnitConverter extends JFrame {
         titleLabel.setFont(new Font("Arial", Font.BOLD, 16)); // Set the font to bold
 
         quantityField = new JTextField(10);
+        resultField = new JTextField(10);
 
         fromUnitComboBox = new JComboBox<>(new String[]{"Feet", "Pounds", "Fahrenheit"});
+        fromUnitComboBox.setPreferredSize(new Dimension(110, fromUnitComboBox.getPreferredSize().height));
         toUnitComboBox = new JComboBox<>(new String[]{"Meters", "Kilograms", "Celsius"});
-
+        toUnitComboBox.setPreferredSize(new Dimension(110, toUnitComboBox.getPreferredSize().height));
+        
         convertButton = new JButton("Convert");
         convertButton.setBackground(new Color(173, 216, 230));  // Light-blue color
         convertButton.addActionListener(new ActionListener() {
@@ -88,24 +93,30 @@ public class UnitConverter extends JFrame {
         gbc.gridy = 2;
         panel.add(quantityLabel, gbc);
 
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        panel.add(resultLabel, gbc);
+
         // Make all input fields the same size
         Dimension fieldSize = new Dimension(fromUnitComboBox.getPreferredSize().width,
                 quantityField.getPreferredSize().height);
         quantityField.setPreferredSize(fieldSize);
 
         gbc.gridx = 1;
+        gbc.gridy = 2;
         panel.add(quantityField, gbc);
 
-        gbc.gridx = 0;
+        gbc.gridx = 1;
         gbc.gridy = 3;
-        panel.add(resultLabel, gbc);
+        panel.add(resultField, gbc);
 
         gbc.gridx = 1;
+        gbc.gridy = 4;
         panel.add(convertButton, gbc);
 
         // Clear button on the far right
         gbc.gridx = 2;  // Set the column to 2
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.gridwidth = 1; // Span one column
         gbc.anchor = GridBagConstraints.EAST; // Align to the right
         panel.add(clearButton, gbc);
@@ -116,10 +127,25 @@ public class UnitConverter extends JFrame {
         // Add the other components panel to the center of the BorderLayout
         add(panel, BorderLayout.CENTER);
 
-        // Set up the frame
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        pack();
-        setLocationRelativeTo(null); // Center the frame on the screen
+  // Set up the frame
+setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Prevent the default close operation
+
+// ...
+
+// Where you want to prompt the confirmation dialog, perhaps in a windowClosing listener
+addWindowListener(new WindowAdapter() {
+    @Override
+    public void windowClosing(WindowEvent e) {
+        int confirmed = JOptionPane.showConfirmDialog(null, "Are you sure you want to close this application?", "Confirm Exit", JOptionPane.YES_NO_OPTION);
+
+        if (confirmed == JOptionPane.YES_OPTION) {
+            dispose(); // Close the frame if confirmed
+        }
+    }
+});
+pack();
+setLocationRelativeTo(null); // Center the frame on the screen
+
     }
 
     private void performConversion() {
