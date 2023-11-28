@@ -14,6 +14,8 @@ public class UnitConverter extends JFrame {
     private JComboBox<String> fromUnitComboBox, toUnitComboBox;
     private JButton convertButton, clearButton;
 
+
+    /*This part initializes various Swing components (labels, text fields, combo boxes, etc.) that will be used in the graphical user interface (GUI) of the application. */
     public UnitConverter() {
         // Initialize components
         fromLabel = new JLabel("From Unit:");
