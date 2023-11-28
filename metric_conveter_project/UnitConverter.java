@@ -47,7 +47,7 @@ public class UnitConverter extends JFrame {
         String imagePath = "metric_conveter_project\\MicrosoftTeams-image (13).png";
         File file = new File(imagePath);
         String absolutePath = file.getAbsolutePath();
-        ImageIcon icon = createResizedImageIcon(absolutePath, 100, 100);  
+        ImageIcon icon = createResizedImageIcon(absolutePath, 100, 100);
         imageLabel.setIcon(icon);
 
         // Wrap the image label and title label in a panel with GridBagLayout
@@ -133,19 +133,33 @@ public class UnitConverter extends JFrame {
             resultLabel.setText("Result: " + result);
         } catch (NumberFormatException e) {
             resultLabel.setText("Invalid input. Please enter a valid number.");
+        } catch (IllegalArgumentException e) {
+            resultLabel.setText(e.getMessage());
         }
     }
 
-    private double convert(String fromUnit, String toUnit, double quantity) {
+    private double convert(String fromUnit, String toUnit, double quantity) throws IllegalArgumentException {
         switch (fromUnit) {
             case "Feet":
-                return (toUnit.equals("Meters")) ? quantity * 0.3048 : quantity;
+                if (toUnit.equals("Meters")) {
+                    return quantity * 0.3048;
+                } else {
+                    throw new IllegalArgumentException("Incompatible units for conversion: Feet to " + toUnit);
+                }
             case "Pounds":
-                return (toUnit.equals("Kilograms")) ? quantity * 0.453592 : quantity;
+                if (toUnit.equals("Kilograms")) {
+                    return quantity * 0.453592;
+                } else {
+                    throw new IllegalArgumentException("Incompatible units for conversion: Pounds to " + toUnit);
+                }
             case "Fahrenheit":
-                return (toUnit.equals("Celsius")) ? (quantity - 32) * 5 / 9 : quantity;
+                if (toUnit.equals("Celsius")) {
+                    return (quantity - 32) * 5 / 9;
+                } else {
+                    throw new IllegalArgumentException("Incompatible units for conversion: Fahrenheit to " + toUnit);
+                }
             default:
-                return quantity;
+                throw new IllegalArgumentException("Unsupported unit: " + fromUnit);
         }
     }
 
