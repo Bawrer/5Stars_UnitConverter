@@ -1,10 +1,10 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import javax.swing.*;
 
 
 /*This code defines a class named UnitConverter that extends JFrame, indicating that it is a Swing frame. */
@@ -141,7 +141,7 @@ setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Prevent the default clo
 addWindowListener(new WindowAdapter() {
     @Override
     public void windowClosing(WindowEvent e) {
-        int confirmed = JOptionPane.showConfirmDialog(null, "Are you sure you want to close this application?", "Confirm Exit", JOptionPane.YES_NO_OPTION);
+        int confirmed = JOptionPane.showConfirmDialog(null, "Yivale Mfana?", "Confirm Exit", JOptionPane.YES_NO_OPTION);
 
         if (confirmed == JOptionPane.YES_OPTION) {
             dispose(); // Close the frame if confirmed
