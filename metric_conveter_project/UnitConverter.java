@@ -153,6 +153,7 @@ setLocationRelativeTo(null); // Center the frame on the screen
 
     }
     private void performConversion() {
+   
         try {
             double quantity = Double.parseDouble(quantityField.getText());
             String fromUnit = fromUnitComboBox.getSelectedItem().toString();
@@ -161,12 +162,16 @@ setLocationRelativeTo(null); // Center the frame on the screen
             double result = convert(fromUnit, toUnit, quantity);
             
             resultField.setText(String.valueOf(result));
+            
         } catch (NumberFormatException e) {
-            resultLabel.setText("Invalid input. Please enter a valid number.");
+            JOptionPane.showMessageDialog(this, "Invalid input. Please enter a valid number.", "Input Error", JOptionPane.WARNING_MESSAGE);
         } catch (IllegalArgumentException e) {
-            resultLabel.setText(e.getMessage());
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
         }
+        
+resultField.setEditable(false);
     }
+
 
     private double convert(String fromUnit, String toUnit, double quantity) throws IllegalArgumentException {
         switch (fromUnit) {
@@ -209,7 +214,9 @@ setLocationRelativeTo(null); // Center the frame on the screen
     /****************Clear button************************/
     private void clearFields() {
         quantityField.setText("");
-        resultLabel.setText("Result:");
+        resultField.setText("");
+    
+
         fromUnitComboBox.setSelectedIndex(0);
         toUnitComboBox.setSelectedIndex(0);
     }
