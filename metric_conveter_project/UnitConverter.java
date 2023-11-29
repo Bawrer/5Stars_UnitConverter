@@ -15,6 +15,8 @@ public class UnitConverter extends JFrame {
     private JButton convertButton, clearButton;
 
 
+
+
     /*This part initializes various Swing components (labels, text fields, combo boxes, etc.) that will be used in the graphical user interface (GUI) of the application. */
     public UnitConverter() {
         // Initialize components
@@ -43,6 +45,7 @@ public class UnitConverter extends JFrame {
             }
         });
 
+
         clearButton = new JButton("Clear");
         clearButton.setBackground(Color.ORANGE);
         clearButton.addActionListener(new ActionListener() {
@@ -52,12 +55,15 @@ public class UnitConverter extends JFrame {
             }
         });
 
+
         // Add an image label
         String imagePath = "metric_conveter_project\\MicrosoftTeams-image (13).png";
         File file = new File(imagePath);
         String absolutePath = file.getAbsolutePath();
         ImageIcon icon = createResizedImageIcon(absolutePath, 100, 100);
         imageLabel.setIcon(icon);
+
+
 
         // Wrap the image label and title label in a panel with GridBagLayout
         JPanel imagePanel = new JPanel(new GridBagLayout());
@@ -77,6 +83,7 @@ public class UnitConverter extends JFrame {
         panel.setBackground(Color.LIGHT_GRAY);  // Set the background color of the panel
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
+
 
         // Add components to the panel
         gbc.gridx = 0;
@@ -133,9 +140,6 @@ public class UnitConverter extends JFrame {
 
   // Set up the frame
 setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Prevent the default close operation
-
-// ...
-
 
 // Where you want to prompt the confirmation dialog, perhaps in a windowClosing listener
 addWindowListener(new WindowAdapter() {
@@ -220,6 +224,7 @@ resultField.setEditable(false);
         fromUnitComboBox.setSelectedIndex(0);
         toUnitComboBox.setSelectedIndex(0);
     }
+
 
     /****************main file****************************** */
     public static void main(String[] args) {
