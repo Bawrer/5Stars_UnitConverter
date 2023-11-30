@@ -31,9 +31,9 @@ public class UnitConverter extends JFrame {
         quantityField = new JTextField(10);
         resultField = new JTextField(10);
 
-        fromUnitComboBox = new JComboBox<>(new String[]{"Feet", "Pounds", "Fahrenheit"});
+        fromUnitComboBox = new JComboBox<>(new String[]{"Feet", "Pounds", "Fahrenheit", "Meters", "Kilograms", "Celsius"});
         fromUnitComboBox.setPreferredSize(new Dimension(110, fromUnitComboBox.getPreferredSize().height));
-        toUnitComboBox = new JComboBox<>(new String[]{"Meters", "Kilograms", "Celsius"});
+        toUnitComboBox = new JComboBox<>(new String[]{"Meters", "Kilograms", "Celsius", "Feet", "Pounds", "Fahrenheit"});
         toUnitComboBox.setPreferredSize(new Dimension(110, toUnitComboBox.getPreferredSize().height));
         
         convertButton = new JButton("Convert");
@@ -197,6 +197,26 @@ resultField.setEditable(false);
                 } else {
                     throw new IllegalArgumentException("Incompatible units for conversion: Fahrenheit to " + toUnit);
                 }
+
+                case "Meters":
+                if (toUnit.equals("Feet")) {
+                    return quantity / 0.3048;
+                } else {
+                    throw new IllegalArgumentException("Incompatible units for conversion: Meters to " + toUnit);
+                }
+            case "Kilograms":
+                if (toUnit.equals("Pounds")) {
+                    return quantity / 0.453592;
+                } else {
+                    throw new IllegalArgumentException("Incompatible units for conversion: Kilograms to " + toUnit);
+                }
+            case "Celsius":
+                if (toUnit.equals("Fahrenheit")) {
+                    return quantity * 9 / 5 + 32;
+                } else {
+                    throw new IllegalArgumentException("Incompatible units for conversion: Celsius to " + toUnit);
+                }
+
             default:
                 throw new IllegalArgumentException("Unsupported unit: " + fromUnit);
         }
