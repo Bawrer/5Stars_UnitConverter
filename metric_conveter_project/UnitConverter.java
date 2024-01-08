@@ -1,10 +1,27 @@
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import javax.swing.*;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 
 /*This code defines a class named UnitConverter that extends JFrame, indicating that it is a Swing frame. */
@@ -57,7 +74,7 @@ public class UnitConverter extends JFrame {
 
 
         // Add an image label
-        String imagePath = "metric_conveter_project\\MicrosoftTeams-image (13).png";
+        String imagePath = "MicrosoftTeams-image (13).png";
         File file = new File(imagePath);
         String absolutePath = file.getAbsolutePath();
         ImageIcon icon = createResizedImageIcon(absolutePath, 100, 100);
